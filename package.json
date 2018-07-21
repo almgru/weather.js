@@ -1,0 +1,26 @@
+{
+  "name": "weather.js",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.11.1",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TehDaniel37/weather.js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TehDaniel37/weather.js/issues"
+  },
+  "homepage": "https://github.com/TehDaniel37/weather.js#readme"
+}
