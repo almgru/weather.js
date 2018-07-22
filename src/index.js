@@ -1,7 +1,8 @@
-import { get_forecast } from './api_client.js';
+import { getForecast } from './api_client.js';
+import { parseWeatherData } from './parser.js';
+import { generateHtml } from './html_generator.js';
 
-get_forecast(56.87767, 14.80906).then(log);
+getForecast(56.87767, 14.80906)
+    .then(parseWeatherData)
+    .then(generateHtml);
 
-function log(txt) {
-    console.log(txt);
-}

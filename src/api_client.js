@@ -1,12 +1,12 @@
-export function get_forecast(latitude, longitude) {
+export function getForecast(latitude, longitude) {
     return new Promise(function(resolve, reject) {
-        fetch(build_uri(latitude, longitude), { mode: 'cors'})
+        fetch(buildUri(latitude, longitude))
             .then(data => data.json())
             .then(resolve);
     });
 }
 
-function build_uri(lat, lon) {
+function buildUri(lat, lon) {
     const endpoint = 'https://opendata-download-metfcst.smhi.se/';
     const category = 'pmp3g';
     const version = '2';
