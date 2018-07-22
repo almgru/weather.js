@@ -71,7 +71,7 @@ function parseWeatherForecast(dataPoint) {
     forecast.windDirection = getParameterValue(params, 'wd');
     forecast.windSpeed = getParameterValue(params, 'ws');
     forecast.cloudiness = getParameterValue(params, 'tcc_mean');
-    forecast.symbol = getParameterValue(params, 'Wsymb2');
+    forecast.rain = getParameterValue(params, 'pmean');
 
     return forecast;
 }
