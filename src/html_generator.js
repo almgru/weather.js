@@ -1,5 +1,12 @@
+/// ============================================================================
+/// Module html_generator.js
+/// ============================================================================
+
 import { isSameDay } from './util.js';
 
+/**
+ * generateHtml(weatherData : Object)
+ */
 export function generateHtml(weatherData) {
     const EXPECTED_ROWS = 3;
     let root = document.querySelector('#weather_app');
@@ -26,7 +33,8 @@ function generateDayTable(day, dayData, expectedRows) {
         table.appendChild(generateTableHeader(["Imorgon"], NR_OF_COLS));
     }
 
-    table.appendChild(generateTableHeader(["Tid", "Temp", "Vind", "Regn", "Himmel"]));
+    table.appendChild(generateTableHeader(["Tid", "Temp", "Vind", "Regn", 
+            "Himmel"]));
 
     let rowsAdded = 0;
     for (let timeData of dayData) {
@@ -63,7 +71,8 @@ function generateTimeRow(forecast) {
     tr.appendChild(tdRain);
 
     let tdCloud = document.createElement('td');
-    tdCloud.appendChild(document.createTextNode(getCloudinessDescription(forecast.cloudiness)));
+    tdCloud.appendChild(document.createTextNode(getCloudinessDescription(
+            forecast.cloudiness)));
     tr.appendChild(tdCloud);
 
     return tr;
@@ -92,7 +101,8 @@ function generateWindDirectionArrow(windDirection) {
     windDirectionArrow.style['display'] = 'inline-block';
     windDirectionArrow.style['padding'] = '3px';
     windDirectionArrow.style['margin'] = '0 10px 0 10px';
-    windDirectionArrow.style['transform'] = 'rotate(' + (DEFAULT_ARROW_DEG + windDirection) + 'deg)';
+    windDirectionArrow.style['transform'] = 'rotate(' + (DEFAULT_ARROW_DEG 
+            + windDirection) + 'deg)';
 
     return windDirectionArrow;
 }

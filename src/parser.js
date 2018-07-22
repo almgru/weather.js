@@ -1,11 +1,12 @@
+/// ============================================================================
 /// Module parser.js
 ///
-/// 
-///
+/// ============================================================================
 
 import { isSameDay } from './util.js';
 
-/* function parse_weather_data(json: Object)
+/**
+ * parseWeatherData(json: Object)
  * 
  * Extracts the relevant data from the weather data retreived from the API call.
  */
@@ -52,7 +53,8 @@ function getTimeSeries(json, date, ...hours) {
         // Get the hours provided in the varargs argument
         let hourVarargs = Array.from(arguments).splice(2, arguments.length);
 
-        // Does the current data point match the provided date and any of the provided hours?
+        // Does the current data point match the provided date and any of the 
+        // provided hours?
         if (hourVarargs.some(hour => hour === dpDate.getHours()) 
                 && isSameDay(date, dpDate)) {
             result.push(dataPoint);

@@ -1,3 +1,10 @@
+/// ============================================================================
+/// Module util.js
+/// ============================================================================
+
+/**
+ * isSameDay(d1 : Date, d2 : Date)
+ */
 export function isSameDay(d1, d2) {
     if (d1.getFullYear() !== d2.getFullYear()) {
         return false;
@@ -13,3 +20,15 @@ export function isSameDay(d1, d2) {
     }
 }
 
+/**
+ * getGeoCoordinates()
+ */
+export function getGeoCoordinates() {
+    let geoCoords = {};
+
+    let weatherDiv = document.querySelector('#weather_app');
+    geoCoords.latitude = weatherDiv.getAttribute('lat');
+    geoCoords.longitude = weatherDiv.getAttribute('lon');
+
+    return geoCoords;
+}

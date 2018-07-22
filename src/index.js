@@ -1,8 +1,11 @@
-import { getForecast } from './api_client.js';
+import { getForecasts } from './api_client.js';
 import { parseWeatherData } from './parser.js';
 import { generateHtml } from './html_generator.js';
+import { getGeoCoordinates } from './util.js';
 
-getForecast(56.87767, 14.80906)
+let geoCoords = getGeoCoordinates();
+
+getForecasts(geoCoords.latitude, geoCoords.longitude)
     .then(parseWeatherData)
     .then(generateHtml);
 
