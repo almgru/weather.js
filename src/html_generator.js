@@ -1,11 +1,17 @@
 /// ============================================================================
-/// Module html_generator.js
+/// module html_generator.js
+///
+/// Responsible for generating the HTML table with the weather data and adding
+/// it to the DOM.
 /// ============================================================================
 
 import { isSameDay } from './util.js';
 
 /**
  * generateHtml(weatherData : Object)
+ *
+ * Generates a HTML table with the weather data and appends it to the DOM 
+ * element with the id 'weather_app'. 
  */
 export function generateHtml(weatherData) {
     const EXPECTED_ROWS = 3;
@@ -13,8 +19,11 @@ export function generateHtml(weatherData) {
 
     for (let day of weatherData.keys()) {
         let dayData = weatherData.get(day);
-        let table = generateDayTable(day, dayData, EXPECTED_ROWS);
-        root.appendChild(table);
+
+        if (dayData.length > 0) {
+            let table = generateDayTable(day, dayData, EXPECTED_ROWS);
+            root.appendChild(table);
+        }
     }
 }
 
@@ -27,24 +36,19 @@ function generateDayTable(day, dayData, expectedRows) {
     tomorrow.setDate(today.getDate() + 1);
 
     if (isSameDay(today, day)) {
-        table.appendChild(generateTableHeader(["Idag"], NR_OF_COLS));
+        table.appendChild(generateTableHeader(['Idag'], NR_OF_COLS));
     }
     else if (isSameDay(tomorrow, day)) {
-        table.appendChild(generateTableHeader(["Imorgon"], NR_OF_COLS));
+        table.appendChild(generateTableHeader(['Imorgon'], NR_OF_COLS));
     }
 
-    table.appendChild(generateTableHeader(["Tid", "Temp", "Vind", "Regn", 
-            "Himmel"]));
+    table.appendChild(generateTableHeader(['Tid', 'Temp', 'Vind', 'Regn', 
+            'Himmel']));
 
     let rowsAdded = 0;
     for (let timeData of dayData) {
-        let timeDiv = generateTimeRow(timeData);
-        table.appendChild(timeDiv);
+        table.appendChild(generateTimeRow(timeData));
         rowsAdded++;
-    }
-
-    for (let i = rowsAdded; i < expectedRows; i++) {
-        table.appendChild(generatePlaceholderRow(NR_OF_COLS));
     }
 
     return table; 

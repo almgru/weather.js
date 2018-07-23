@@ -1,5 +1,6 @@
 /// ============================================================================
 /// module api_client.js
+///
 /// Module responsible for fetching the forecast data from the API.
 /// ============================================================================
 
@@ -36,3 +37,4 @@ function buildUri(lat, lon) {
 
     return uri;
 }
+

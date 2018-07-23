@@ -1,9 +1,13 @@
 /// ============================================================================
-/// Module util.js
+/// module util.js
+///
+/// Some utility functions that did not fit any of the other modules.
 /// ============================================================================
 
 /**
  * isSameDay(d1 : Date, d2 : Date)
+ *
+ * Checks if two dates are on the same day.
  */
 export function isSameDay(d1, d2) {
     if (d1.getFullYear() !== d2.getFullYear()) {
@@ -22,13 +26,21 @@ export function isSameDay(d1, d2) {
 
 /**
  * getGeoCoordinates()
+ *
+ * Extracts the values for the attributes 'lat' and 'lon' from the div with the
+ * id 'weather_app' and returns it in an Object with the format:
+ *
+ * latitude : number,
+ * longitude : number
  */
 export function getGeoCoordinates() {
     let geoCoords = {};
 
     let weatherDiv = document.querySelector('#weather_app');
+    console.log(weatherDiv);
     geoCoords.latitude = weatherDiv.getAttribute('lat');
     geoCoords.longitude = weatherDiv.getAttribute('lon');
 
     return geoCoords;
 }
+

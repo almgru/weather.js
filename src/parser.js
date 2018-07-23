@@ -1,6 +1,8 @@
 /// ============================================================================
-/// Module parser.js
+/// module parser.js
 ///
+/// Responsible for extracting the relevant data from the json retreived from
+/// the API and parsing it to an easier to handle format.
 /// ============================================================================
 
 import { isSameDay } from './util.js';
@@ -8,7 +10,19 @@ import { isSameDay } from './util.js';
 /**
  * parseWeatherData(json: Object)
  * 
- * Extracts the relevant data from the weather data retreived from the API call.
+ * Extracts the data with the relevant days (today, tomorrow) and the relevant
+ * times (6:00, 12:00, 18:00). Also parses it to a 'forecast' Object with the 
+ * following members:
+ *
+ * time : Date,
+ * temperature : number,        // in degrees celcius
+ * windDirection : number,      // in degrees
+ * windSpeed : number,          // in m/s
+ * cloudiness : number,         // in oktas
+ * rain : number                // in mm/h
+ *
+ * The return value is a map where the keys are the dates (today, tomorrow) and
+ * the values are an array of the forecast objects.
  */
 export function parseWeatherData(json) {
     let today = new Date();
@@ -17,8 +31,6 @@ export function parseWeatherData(json) {
 
     let todaysTimeSeries = getTimeSeries(json, today, 6, 12, 18);
     let tomorrowsTimeSeries = getTimeSeries(json, tomorrow, 6, 12, 18);
-    console.log(todaysTimeSeries);
-    console.log(tomorrowsTimeSeries);
 
     let todaysForecasts = [];
 
@@ -35,9 +47,6 @@ export function parseWeatherData(json) {
     let allForecasts = new Map();
     allForecasts.set(today, todaysForecasts);
     allForecasts.set(tomorrow, tomorrowsForecasts);
-
-    console.log("Forecasts: ");
-    console.log(allForecasts);
 
     return allForecasts;
 }

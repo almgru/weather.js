@@ -3,9 +3,10 @@ import { parseWeatherData } from './parser.js';
 import { generateHtml } from './html_generator.js';
 import { getGeoCoordinates } from './util.js';
 
-let geoCoords = getGeoCoordinates();
+window.addEventListener('load', event => {
+    let geoCoords = getGeoCoordinates();
 
-getForecasts(geoCoords.latitude, geoCoords.longitude)
-    .then(parseWeatherData)
-    .then(generateHtml);
-
+    getForecasts(geoCoords.latitude, geoCoords.longitude)
+        .then(parseWeatherData)
+        .then(generateHtml);
+});
