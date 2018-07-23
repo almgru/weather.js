@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather_app_table_row, .weather_app_table_data {
+    padding: 7px 10px;
+    text-align: center;
+}
+
+.weather_app_table_data_row:nth-child(odd) {
+    background-color: #ebf5fb ;
+}
+
+.weather_app_table {
+    border-collapse: collapse;
+}
+
+.weather_app_short_col {
+    width: 60px;
+}
+
+.weather_app_medium_col {
+    width: 80px;
+}
+
+.weather_app_long_col {
+    width: 180px;
+}
+
+.weather_app_table_header_row {
+    background-color: #aed6f1;
+}
+
+.weather_app_day_header {
+    font-size: 2em;
+    background-color: white;
+    border: 0;
+}
+
+.weather_app_day_header th {
+    text-align: left;
+    color: #5d6d7e;
+}
+
+.weather_app_table_row {
+
+}
+
+.weather_app_table_data {
+
+}
+
+.weather_app_wind_arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin: 0 10px 0 0;
+}
+
+.weather_app_table_header {
+
+}
+

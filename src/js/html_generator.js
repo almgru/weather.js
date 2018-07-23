@@ -31,17 +31,9 @@ function generateDayTable(day, dayData, expectedRows) {
     const NR_OF_COLS = 5;
 
     let table = document.createElement('table');
-    let today = new Date();
-    let tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
+    table.classList.add('weather_app_table');
 
-    if (isSameDay(today, day)) {
-        table.appendChild(generateTableHeader(['Idag'], NR_OF_COLS));
-    }
-    else if (isSameDay(tomorrow, day)) {
-        table.appendChild(generateTableHeader(['Imorgon'], NR_OF_COLS));
-    }
-
+    table.appendChild(generateDayHeader(day, NR_OF_COLS));
     table.appendChild(generateTableHeader(['Tid', 'Temp', 'Vind', 'Regn', 
             'Himmel']));
 
@@ -56,25 +48,31 @@ function generateDayTable(day, dayData, expectedRows) {
 
 function generateTimeRow(forecast) {
     let tr = document.createElement('tr');
+    tr.classList.add('weather_app_table_data_row', 'weather_app_table_row');
 
     let tdTime = document.createElement('td');
+    tdTime.classList.add('weather_app_table_data', 'weather_app_short_col');
     tdTime.appendChild(document.createTextNode(forecast.time.getHours()));
     tr.appendChild(tdTime);
 
     let tdTemp = document.createElement('td');
+    tdTemp.classList.add('weather_app_table_data', 'weather_app_short_col');
     tdTemp.appendChild(document.createTextNode(forecast.temperature + ' °C'));
     tr.appendChild(tdTemp);
 
     let tdWind = document.createElement('td');
+    tdWind.classList.add('weather_app_table_data', 'weather_app_medium_col');
     tdWind.appendChild(generateWindDirectionArrow(forecast.windDirection));
     tdWind.appendChild(document.createTextNode(forecast.windSpeed + ' m/s'));
     tr.appendChild(tdWind);
 
     let tdRain = document.createElement('td');
+    tdRain.classList.add('weather_app_table_data', 'weather_app_short_col');
     tdRain.appendChild(document.createTextNode(forecast.rain + ' mm'));
     tr.appendChild(tdRain);
 
     let tdCloud = document.createElement('td');
+    tdCloud.classList.add('weather_app_table_data', 'weather_app_long_col');
     tdCloud.appendChild(document.createTextNode(getCloudinessDescription(
             forecast.cloudiness)));
     tr.appendChild(tdCloud);
@@ -84,9 +82,11 @@ function generateTimeRow(forecast) {
 
 function generateTableHeader(headers, span = 1) {
     let tr = document.createElement('tr');
+    tr.classList.add('weather_app_table_header_row', 'weather_app_table_row');
 
     for (let header of headers) {
         let th = document.createElement('th');
+        th.classList.add('weather_app_table_header', 'weather_app_table_data');
 
         th.setAttribute("colspan", span);
         th.appendChild(document.createTextNode(header));
@@ -96,15 +96,30 @@ function generateTableHeader(headers, span = 1) {
     return tr;
 }
 
+function generateDayHeader(day, span) {
+    let today = new Date();
+    let tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    let dayHeader;
+
+    if (isSameDay(today, day)) {
+        dayHeader = generateTableHeader(['Idag'], span);
+    }
+    else if (isSameDay(tomorrow, day)) {
+        dayHeader = generateTableHeader(['Imorgon'], span);
+    }
+    
+    dayHeader.classList.add('weather_app_day_header');
+
+    return dayHeader;
+}
+
 function generateWindDirectionArrow(windDirection) {
     const DEFAULT_ARROW_DEG = 45;
     let windDirectionArrow = document.createElement('span');
 
-    windDirectionArrow.style['border'] = 'solid black';
-    windDirectionArrow.style['border-width'] = '0 3px 3px 0';
-    windDirectionArrow.style['display'] = 'inline-block';
-    windDirectionArrow.style['padding'] = '3px';
-    windDirectionArrow.style['margin'] = '0 10px 0 10px';
+    windDirectionArrow.classList.add('weather_app_wind_arrow');
     windDirectionArrow.style['transform'] = 'rotate(' + (DEFAULT_ARROW_DEG 
             + windDirection) + 'deg)';
 
@@ -132,16 +147,5 @@ function getCloudinessDescription(cloudinessValue) {
         case 8:
             return "Mulet";
     }
-}
-
-function generatePlaceholderRow(span) {
-    let tr = document.createElement('tr');
-    
-    let td = document.createElement('td');
-    td.setAttribute('colspan', span);
-    td.appendChild(document.createTextNode("Prognos ej tillgänglig"));
-    tr.appendChild(td);
-
-    return tr;
 }
 
