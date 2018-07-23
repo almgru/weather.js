@@ -28,7 +28,7 @@ export function isSameDay(d1, d2) {
  * getGeoCoordinates()
  *
  * Extracts the values for the attributes 'lat' and 'lon' from the div with the
- * id 'weather_app' and returns it in an Object with the format:
+ * id 'weater_app' and returns it in an Object with the format:
  *
  * latitude : number,
  * longitude : number
@@ -36,8 +36,7 @@ export function isSameDay(d1, d2) {
 export function getGeoCoordinates() {
     let geoCoords = {};
 
-    let weatherDiv = document.querySelector('#weather_app');
-    console.log(weatherDiv);
+    let weatherDiv = document.querySelector('#weater_app');
     geoCoords.latitude = weatherDiv.getAttribute('lat');
     geoCoords.longitude = weatherDiv.getAttribute('lon');
 
