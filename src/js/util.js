@@ -36,7 +36,7 @@ export function isSameDay(d1, d2) {
 export function getGeoCoordinates() {
     let geoCoords = {};
 
-    let weatherDiv = document.querySelector('#weater_app');
+    let weatherDiv = document.querySelector('#weather_widget');
     geoCoords.latitude = weatherDiv.getAttribute('lat');
     geoCoords.longitude = weatherDiv.getAttribute('lon');
 
