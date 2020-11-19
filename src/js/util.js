@@ -28,7 +28,7 @@ export function isSameDay(d1, d2) {
  * getGeoCoordinates()
  *
  * Extracts the values for the attributes 'lat' and 'lon' from the div with the
- * id 'weater_app' and returns it in an Object with the format:
+ * id 'weather_widget' and returns it in an Object with the format:
  *
  * latitude : number,
  * longitude : number

@@ -11,11 +11,11 @@ import { isSameDay } from './util.js';
  * generateHtml(weatherData : Object)
  *
  * Generates a HTML table with the weather data and appends it to the DOM 
- * element with the id 'weater_app'. 
+ * element with the id 'weather_widget'. 
  */
 export function generateHtml(weatherData) {
     const EXPECTED_ROWS = 3;
-    let root = document.querySelector('#weater_app');
+    let root = document.querySelector('#weather_widget');
 
     for (let day of weatherData.keys()) {
         let dayData = weatherData.get(day);
